@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # coding: utf-8
 
 """_
@@ -45,9 +45,7 @@ setup(
         'Operating System :: POSIX',
         'Topic :: Text Processing :: Markup',
         'License :: OSI Approved :: BSD License',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     entry_points={'console_scripts': ['mdv = mdv:run']},
 )

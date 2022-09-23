@@ -23,7 +23,7 @@ def w(func, *a, **kw):
     t1 = t()
     for i in range(count):
         m = func(*a, **kw)
-    print("%.2f" % (t() - t1), fn)
+    print(("%.2f" % (t() - t1), fn))
     m = "<html>\n<body>" + m + "</body></html>"
     with open("./results_perftests/out_" + fn + ".html", "w") as fd:
         fd.write(str(m))

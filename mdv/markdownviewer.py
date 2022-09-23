@@ -142,7 +142,7 @@ with argument the path to the changed file.
 
 
 """
-from __future__ import absolute_import, print_function, unicode_literals
+
 
 import sys
 
@@ -320,11 +320,11 @@ def parse_env_and_cli():
         'MDV_C_THEME': ['AXC_CODE_THEME', 'MDV_CODE_THEME'],
         'MDV_THEME': ['AXC_THEME'],
     }
-    for k, v in aliases.items():
+    for k, v in list(aliases.items()):
         for f in v:
             if f in os.environ:
                 os.environ[k] = envget(f)
-    for k, v in opts.items():
+    for k, v in list(opts.items()):
         V = envget('MDV_' + v[1].upper())
         if V is not None:
             kw[v[1]] = V
@@ -355,14 +355,14 @@ except ImportError:  # pragma: no cover
 
 
 if PY3:
-    unichr = chr
+    chr = chr
     from html.parser import HTMLParser
 
     string_type = str
 else:
-    from HTMLParser import HTMLParser
+    from html.parser import HTMLParser
 
-    string_type = basestring
+    string_type = str
 
     def breakpoint():
         import pdb
@@ -877,7 +877,7 @@ def replace_links(el, html):
     if len(parts) == 1:
         return None, html
     links_list, cur_link = [], 0
-    links = [l for l in get_element_children(el) if 'href' in l.keys()]
+    links = [l for l in get_element_children(el) if 'href' in list(l.keys())]
     if not len(parts) == len(links) + 1:
         # there is an html element within which we don't support,
         # e.g. blockquote
@@ -905,7 +905,7 @@ def replace_links(el, html):
             else:  # inline table (it)
                 # we build a link list, add the number like ① :
                 try:
-                    cur += '%s ' % unichr(link_start_ord + cur_link)
+                    cur += '%s ' % chr(link_start_ord + cur_link)
                 except NameError:
                     # fix for py3
                     # http://stackoverflow.com/a/2352047
@@ -1313,7 +1313,7 @@ def main(
             make_sample()
             md = args["md"] = md_sample
             print(md)
-            print
+            print()
             print("Styling Result")
         else:
             if filename == "-":
