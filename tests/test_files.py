@@ -1,11 +1,12 @@
 from unittest import TestCase, main
 import pdb
+import importlib
 
 breakpoint = pdb.set_trace
 try:
     import sys
 
-    reload(sys)
+    importlib.reload(sys)
     sys.setdefaultencoding('utf-8')
 except:
     pass  # py3
@@ -14,7 +15,7 @@ import mdv
 import sys
 
 if sys.version_info[0] > 2:
-    unicode = str
+    str = str
 
 here = os.path.abspath(__file__).rsplit('/', 1)[0]
 
@@ -35,11 +36,11 @@ class TestFiles(TestCase):
         for f in os.listdir(df):
             if not f.endswith('.md'):
                 continue
-            print('testfile: ', f)
+            print(('testfile: ', f))
             with open(df + '/' + f) as fd:
                 src = fd.read()
             for col in 20, 40, 80, 200:
-                print('columns: ', col)
+                print(('columns: ', col))
 
                 res = mdv.main(
                     src,
@@ -54,10 +55,10 @@ class TestFiles(TestCase):
                     tgt = fd.read()
 
                 # print(res)
-                if not unicode(tgt).strip() == unicode(res).strip():
+                if not str(tgt).strip() == str(res).strip():
                     print('error')
-                    print('got:\n', res)
-                    print('should:\n', unicode(tgt))
+                    print(('got:\n', res))
+                    print(('should:\n', str(tgt)))
                     raise Exception('Error %s col %s' % (f, col))
 
 

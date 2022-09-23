@@ -1,10 +1,11 @@
 # coding: utf-8
 from unittest import TestCase, main
+import importlib
 
 try:
     import sys
 
-    reload(sys)
+    importlib.reload(sys)
     sys.setdefaultencoding('utf-8')
 except:
     pass  # py3
