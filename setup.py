@@ -26,7 +26,7 @@ md = md.replace('src="./', 'src="%s/' % gh)
 setup(
     name='mdv',
     version=version,
-    packages=find_packages(),
+  packages=["mdv", "mdv.misc", "mdv.misc.results_perftests"],
     author='Axiros GmbH',
     author_email='gk@axiros.com',
     description='Terminal Markdown Viewer',
